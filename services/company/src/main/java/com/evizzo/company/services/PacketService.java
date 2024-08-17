@@ -7,6 +7,9 @@ import com.evizzo.company.repositories.PacketRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class PacketService {
@@ -18,5 +21,12 @@ public class PacketService {
         packet.setPacketStatus(PacketStatus.TO_BE_SENT);
         Packet savedPacket = packetRepository.save(packet);
         return dtoService.convertToDto(savedPacket);
+    }
+
+    public List<PacketDTO> getAllPacketsOrderByCreatedAtDesc() {
+        List<Packet> packets = packetRepository.findAllByOrderByCreatedAtDesc();
+        return packets.stream()
+                .map(dtoService::convertToDto)
+                .collect(Collectors.toList());
     }
 }
