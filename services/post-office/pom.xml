@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.evizzo</groupId>
-	<artifactId>company</artifactId>
+	<artifactId>post-office</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>company</name>
-	<description>company service</description>
+	<name>post-office</name>
+	<description>post office service</description>
 	<url/>
 	<licenses>
 		<license/>

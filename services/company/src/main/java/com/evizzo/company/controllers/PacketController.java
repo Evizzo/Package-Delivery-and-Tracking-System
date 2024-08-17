@@ -25,4 +25,10 @@ public class PacketController {
         List<PacketDTO> packets = packetService.getAllPacketsOrderByCreatedAtDesc();
         return new ResponseEntity<>(packets, HttpStatus.OK);
     }
+
+    @PostMapping("/send")
+    public ResponseEntity<PacketDTO> sendPacket(@RequestBody PacketDTO packetDTO) {
+        packetService.sendPacket(packetDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

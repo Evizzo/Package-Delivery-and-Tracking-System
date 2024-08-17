@@ -1,5 +1,6 @@
 package com.evizzo.company.services;
 
+import com.evizzo.company.clients.PostOfficeClient;
 import com.evizzo.company.dtos.PacketDTO;
 import com.evizzo.company.entities.Packet;
 import com.evizzo.company.enums.PacketStatus;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 public class PacketService {
     private final PacketRepository packetRepository;
     private final DTOService dtoService;
+    private final PostOfficeClient postOfficeClient;
 
     public PacketDTO savePacket(PacketDTO packetDTO) {
         Packet packet = dtoService.convertToEntity(packetDTO);
@@ -28,5 +30,11 @@ public class PacketService {
         return packets.stream()
                 .map(dtoService::convertToDto)
                 .collect(Collectors.toList());
+    }
+
+    public PacketDTO sendPacket(PacketDTO packetDTO) {
+        postOfficeClient.sendPackage(packetDTO);
+
+        return packetDTO;
     }
 }
