@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -34,5 +35,10 @@ public class PacketController {
     public ResponseEntity<Void> updatePacketStatus(@PathVariable UUID trackingNumber, @RequestParam PacketStatus status) {
         packetService.updatePacketStatus(trackingNumber, status);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/{trackingNumber}/track")
+    public ResponseEntity<Optional<PacketDTO>> findPacketById(@PathVariable UUID trackingNumber) {
+        return new ResponseEntity<>(packetService.findPacketById(trackingNumber), HttpStatus.OK);
     }
 }
