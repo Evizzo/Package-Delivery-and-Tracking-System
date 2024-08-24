@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("company/packet")
@@ -17,18 +15,6 @@ public class PacketController {
 
     @PostMapping
     public ResponseEntity<PacketDTO> createPacket(@RequestBody PacketDTO packetDTO) {
-        return new ResponseEntity<>(packetService.savePacket(packetDTO), HttpStatus.CREATED);
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<PacketDTO>> getAllPacketsOrderByCreatedAtDesc() {
-        List<PacketDTO> packets = packetService.getAllPacketsOrderByCreatedAtDesc();
-        return new ResponseEntity<>(packets, HttpStatus.OK);
-    }
-
-    @PostMapping("/send")
-    public ResponseEntity<PacketDTO> sendPacket(@RequestBody PacketDTO packetDTO) {
-        packetService.sendPacket(packetDTO);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(packetService.createPacket(packetDTO), HttpStatus.CREATED);
     }
 }

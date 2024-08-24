@@ -1,6 +1,6 @@
-package com.evizzo.company.entities;
+package com.evizzo.tracking.entities;
 
-import com.evizzo.company.enums.PacketStatus;
+import com.evizzo.tracking.enums.PacketStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

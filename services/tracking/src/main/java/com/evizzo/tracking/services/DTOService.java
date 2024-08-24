@@ -1,7 +1,7 @@
-package com.evizzo.post_office.services;
+package com.evizzo.tracking.services;
 
-import com.evizzo.post_office.dtos.PacketDTO;
-import com.evizzo.post_office.entities.Packet;
+import com.evizzo.tracking.dtos.PacketDTO;
+import com.evizzo.tracking.entities.Packet;
 import org.springframework.stereotype.Service;
 
 @Service

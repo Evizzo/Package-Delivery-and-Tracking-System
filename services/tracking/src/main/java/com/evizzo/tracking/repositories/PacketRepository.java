@@ -1,6 +1,6 @@
-package com.evizzo.company.repositories;
+package com.evizzo.tracking.repositories;
 
-import com.evizzo.company.entities.Packet;
+import com.evizzo.tracking.entities.Packet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

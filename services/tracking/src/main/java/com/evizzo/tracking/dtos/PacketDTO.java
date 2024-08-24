@@ -1,6 +1,6 @@
-package com.evizzo.post_office.dtos;
+package com.evizzo.tracking.dtos;
 
-import com.evizzo.post_office.enums.PacketStatus;
+import com.evizzo.tracking.enums.PacketStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

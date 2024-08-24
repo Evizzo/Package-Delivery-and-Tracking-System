@@ -1,14 +1,15 @@
-package com.evizzo.post_office;
+package com.evizzo.tracking;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+@EnableJpaAuditing
 @SpringBootApplication
-public class PostOfficeApplication {
+public class TrackingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PostOfficeApplication.class, args);
+		SpringApplication.run(TrackingApplication.class, args);
 	}
 
 }

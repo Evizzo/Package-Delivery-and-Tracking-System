@@ -10,6 +10,7 @@
         <module name="config-server" />
         <module name="company" />
         <module name="post-office" />
+        <module name="tracking" />
         <module name="discovery" />
       </profile>
     </annotationProcessing>
@@ -20,6 +21,7 @@
       <module name="config-server" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="post-office" options="-parameters" />
+      <module name="tracking" options="-parameters" />
     </option>
   </component>
 </project>
