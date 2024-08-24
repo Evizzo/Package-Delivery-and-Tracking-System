@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,5 +29,13 @@ public class PacketService {
         return packets.stream()
                 .map(dtoService::convertToDto)
                 .collect(Collectors.toList());
+    }
+
+    public void updatePacketStatus(UUID trackingNumber, PacketStatus status) {
+        var packet = packetRepository.findById(trackingNumber)
+                .orElseThrow(() -> new IllegalArgumentException("Packet not found"));
+
+        packet.setPacketStatus(status);
+        packetRepository.save(packet);
     }
 }

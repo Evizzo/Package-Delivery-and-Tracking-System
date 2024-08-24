@@ -24,7 +24,6 @@ public class Packet {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID trackingNumber;
 
-    @Column(name = "destination_address")
     private String destinationAddress;
 
     @Enumerated(EnumType.STRING)
