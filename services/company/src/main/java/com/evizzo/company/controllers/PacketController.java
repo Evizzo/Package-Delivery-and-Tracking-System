@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -24,5 +25,10 @@ public class PacketController {
     public ResponseEntity<Void> sendPacket(@PathVariable UUID trackingNumber) {
         packetService.sendPacket(trackingNumber);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/to-be-sent")
+    public ResponseEntity<List<PacketDTO>> getPacketsToBeSent() {
+        return new ResponseEntity<>(packetService.getAllPacketsOrderByCreatedAtDescToBeSend(), HttpStatus.OK);
     }
 }
