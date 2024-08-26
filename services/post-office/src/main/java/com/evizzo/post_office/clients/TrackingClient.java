@@ -14,8 +14,8 @@ public interface TrackingClient {
     @PutMapping("/tracking/packet/{trackingNumber}/update-status")
     ResponseEntity<Void> updatePacketStatus(@PathVariable UUID trackingNumber, @RequestParam PacketStatus status);
 
-    @PutMapping("/tracking/packet/{trackingNumber}/send-packet")
-    ResponseEntity<Void> sendPacket(@PathVariable UUID trackingNumber, @RequestBody PacketDTO sendPacket);
+    @PutMapping("/tracking/packet/send-packet")
+    ResponseEntity<Void> sendPacket(@RequestBody PacketDTO sendPacket);
 
     @GetMapping("/tracking/packet/{trackingNumber}/track")
     ResponseEntity<Optional<PacketDTO>> findPacketById(@PathVariable UUID trackingNumber);

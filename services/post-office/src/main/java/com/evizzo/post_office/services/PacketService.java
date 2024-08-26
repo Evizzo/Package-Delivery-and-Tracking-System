@@ -29,7 +29,7 @@ public class PacketService {
             packetDTO.setPacketStatus(PacketStatus.READY_FOR_PICKUP);
             packetDTO.setStoredAtWarehouse(storageService.addPacket(packetDTO.getPacketSize()));
 
-            trackingClient.sendPacket(trackingNumber, packetDTO);
+            trackingClient.sendPacket(packetDTO);
         } else {
             throw new IllegalArgumentException("Packet not found for tracking number: " + trackingNumber);
         }

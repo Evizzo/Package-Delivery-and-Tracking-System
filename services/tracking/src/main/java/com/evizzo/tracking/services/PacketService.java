@@ -46,8 +46,8 @@ public class PacketService {
                 .orElseThrow(() -> new IllegalArgumentException("Packet not found"))));
     }
 
-    public void sendPacket(PacketDTO sendPacket, UUID trackingNumber) {
-        Packet existingPacket = packetRepository.findById(trackingNumber)
+    public void sendPacket(PacketDTO sendPacket) {
+        Packet existingPacket = packetRepository.findById(sendPacket.getTrackingNumber())
                 .orElseThrow(() -> new IllegalArgumentException("Packet not found"));
 
         existingPacket.setPacketStatus(sendPacket.getPacketStatus());
