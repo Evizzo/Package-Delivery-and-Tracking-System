@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,5 +25,9 @@ public class PacketService {
         return packets.stream()
                 .filter(packet -> packet.getPacketStatus() == PacketStatus.READY_FOR_PICKUP)
                 .collect(Collectors.toList());
+    }
+
+    public void updatePacketStatus(UUID trackingNumber, PacketStatus status) {
+        trackingClient.updatePacketStatus(trackingNumber, status);
     }
 }
