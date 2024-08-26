@@ -2,6 +2,7 @@ package com.evizzo.tracking.services;
 
 import com.evizzo.tracking.dtos.PacketDTO;
 import com.evizzo.tracking.entities.Packet;
+import com.evizzo.tracking.enums.PacketSize;
 import com.evizzo.tracking.enums.PacketStatus;
 import com.evizzo.tracking.repositories.PacketRepository;
 import lombok.AllArgsConstructor;
@@ -43,5 +44,15 @@ public class PacketService {
     public Optional<PacketDTO> findPacketById(UUID trackingNumber){
         return Optional.ofNullable(dtoService.convertToDto(packetRepository.findById(trackingNumber)
                 .orElseThrow(() -> new IllegalArgumentException("Packet not found"))));
+    }
+
+    public void sendPacket(PacketDTO sendPacket, UUID trackingNumber) {
+        Packet existingPacket = packetRepository.findById(trackingNumber)
+                .orElseThrow(() -> new IllegalArgumentException("Packet not found"));
+
+        existingPacket.setPacketStatus(sendPacket.getPacketStatus());
+        existingPacket.setStoredAtWarehouse(sendPacket.getStoredAtWarehouse());
+
+        packetRepository.save(existingPacket);
     }
 }

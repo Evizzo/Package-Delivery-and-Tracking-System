@@ -1,6 +1,7 @@
 package com.evizzo.tracking.entities;
 
 import com.evizzo.tracking.enums.PacketStatus;
+import com.evizzo.tracking.enums.PacketSize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +29,11 @@ public class Packet {
 
     @Enumerated(EnumType.STRING)
     private PacketStatus packetStatus;
+
+    @Enumerated(EnumType.STRING)
+    private PacketSize packetSize;
+
+    private Integer storedAtWarehouse;
 
     @Column(nullable = false, updatable = false)
     @CreatedDate

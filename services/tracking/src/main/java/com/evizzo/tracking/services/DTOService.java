@@ -13,6 +13,8 @@ public class DTOService {
                 .packetStatus(packet.getPacketStatus())
                 .createdAt(packet.getCreatedAt())
                 .lastModifiedDate(packet.getLastModifiedDate())
+                .packetSize(packet.getPacketSize())
+                .storedAtWarehouse(packet.getStoredAtWarehouse())
                 .build();
     }
 
@@ -23,6 +25,8 @@ public class DTOService {
                 .packetStatus(packetDTO.getPacketStatus())
                 .createdAt(packetDTO.getCreatedAt())
                 .lastModifiedDate(packetDTO.getLastModifiedDate())
+                .packetSize(packetDTO.getPacketSize())
+                .storedAtWarehouse(packetDTO.getStoredAtWarehouse())
                 .build();
     }
 }

@@ -1,18 +1,37 @@
 package com.evizzo.post_office.services;
 
 import com.evizzo.post_office.clients.TrackingClient;
+import com.evizzo.post_office.dtos.PacketDTO;
 import com.evizzo.post_office.enums.PacketStatus;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @AllArgsConstructor
 public class PacketService {
     private final TrackingClient trackingClient;
+    private final StorageService storageService;
 
     public void sendPacket(UUID trackingNumber) {
-        trackingClient.updatePacketStatus(trackingNumber, PacketStatus.READY_FOR_PICKUP);
+        ResponseEntity<Optional<PacketDTO>> response = trackingClient.findPacketById(trackingNumber);
+
+        Optional<PacketDTO> optionalPacketDTO = response.getBody();
+
+        if (Objects.requireNonNull(optionalPacketDTO).isPresent()) {
+            PacketDTO packetDTO = optionalPacketDTO.get();
+
+            packetDTO.setTrackingNumber(trackingNumber);
+            packetDTO.setPacketStatus(PacketStatus.READY_FOR_PICKUP);
+            packetDTO.setStoredAtWarehouse(storageService.addPacket(packetDTO.getPacketSize()));
+
+            trackingClient.sendPacket(trackingNumber, packetDTO);
+        } else {
+            throw new IllegalArgumentException("Packet not found for tracking number: " + trackingNumber);
+        }
     }
 }

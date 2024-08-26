@@ -41,4 +41,13 @@ public class PacketController {
     public ResponseEntity<Optional<PacketDTO>> findPacketById(@PathVariable UUID trackingNumber) {
         return new ResponseEntity<>(packetService.findPacketById(trackingNumber), HttpStatus.OK);
     }
+
+    @PutMapping("/{trackingNumber}/send-packet")
+    @Transactional
+    public ResponseEntity<Void> sendPacket(
+            @PathVariable UUID trackingNumber,
+            @RequestBody PacketDTO sendPacket) {
+        packetService.sendPacket(sendPacket, trackingNumber);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
