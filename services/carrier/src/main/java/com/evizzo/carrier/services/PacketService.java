@@ -1,5 +1,6 @@
 package com.evizzo.carrier.services;
 
+import com.evizzo.carrier.clients.PostOfficeClient;
 import com.evizzo.carrier.clients.TrackingClient;
 import com.evizzo.carrier.dtos.PacketDTO;
 import com.evizzo.carrier.enums.PacketStatus;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class PacketService {
     private final TrackingClient trackingClient;
+    private final PostOfficeClient postOfficeClient;
 
     public List<PacketDTO> getAllPacketsOrderByCreatedAtDescReadyForPickup() {
         List<PacketDTO> packets = trackingClient.getAllPacketsOrderByCreatedAtDesc().getBody();
@@ -29,5 +31,9 @@ public class PacketService {
 
     public void updatePacketStatus(UUID trackingNumber, PacketStatus status) {
         trackingClient.updatePacketStatus(trackingNumber, status);
+    }
+
+    public void pickupPacket(UUID trackingNumber){
+        postOfficeClient.pickupPacket(trackingNumber);
     }
 }

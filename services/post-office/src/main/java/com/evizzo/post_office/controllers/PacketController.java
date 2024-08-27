@@ -19,4 +19,10 @@ public class PacketController {
         packetService.sendPacket(trackingNumber);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PutMapping("/{trackingNumber}/pickup")
+    public ResponseEntity<Void> pickupPacket(@PathVariable UUID trackingNumber) {
+        packetService.pickupPacket(trackingNumber);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
