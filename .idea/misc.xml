@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/services/post-office/pom.xml" />
         <option value="$PROJECT_DIR$/services/tracking/pom.xml" />
         <option value="$PROJECT_DIR$/services/carrier/pom.xml" />
+        <option value="$PROJECT_DIR$/services/authentication/pom.xml" />
       </list>
     </option>
   </component>
