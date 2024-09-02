@@ -3,6 +3,23 @@
 
 # API Endpoints
 
+## Authentication Service
+### Base URL: `/auth`
+
+- **POST /register**
+  - **Description:** Registers a new user.
+  - **Request Body:** `RegisterRequest`.
+  - **Response:** `200 OK` with `AuthenticationResponse`.
+
+- **POST /authenticate**
+  - **Description:** Authenticates a user with the provided credentials.
+  - **Request Body:** `AuthenticationRequest`.
+  - **Response:** `200 OK` with `AuthenticationResponse`.
+
+- **POST /logout**
+  - **Description:** Logs out the currently authenticated user.
+  - **Response:** `200 OK`.
+
 ## Company Service
 ### Base URL: `/company/packet`
 
