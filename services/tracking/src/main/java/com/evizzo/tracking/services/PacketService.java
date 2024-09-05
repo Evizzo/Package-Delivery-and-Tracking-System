@@ -23,11 +23,13 @@ public class PacketService {
         Packet packet = dtoService.convertToEntity(packetDTO);
         packet.setPacketStatus(PacketStatus.TO_BE_SENT);
         Packet savedPacket = packetRepository.save(packet);
+
         return dtoService.convertToDto(savedPacket);
     }
 
     public List<PacketDTO> getAllPacketsOrderByCreatedAtDesc() {
         List<Packet> packets = packetRepository.findAllByOrderByCreatedAtDesc();
+
         return packets.stream()
                 .map(dtoService::convertToDto)
                 .collect(Collectors.toList());
