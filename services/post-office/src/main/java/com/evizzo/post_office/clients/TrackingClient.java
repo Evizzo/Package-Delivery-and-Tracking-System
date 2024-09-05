@@ -1,5 +1,6 @@
 package com.evizzo.post_office.clients;
 
+import com.evizzo.post_office.auth.FeignClientConfig;
 import com.evizzo.post_office.dtos.PacketDTO;
 import com.evizzo.post_office.enums.PacketStatus;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.UUID;
 
-@FeignClient(name = "TRACKING-SERVICE")
+@FeignClient(name = "TRACKING-SERVICE", configuration = FeignClientConfig.class)
 public interface TrackingClient {
     @PutMapping("/tracking/packet/{trackingNumber}/update-status")
     ResponseEntity<Void> updatePacketStatus(@PathVariable UUID trackingNumber, @RequestParam PacketStatus status);

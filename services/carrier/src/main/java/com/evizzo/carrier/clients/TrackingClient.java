@@ -1,5 +1,6 @@
 package com.evizzo.carrier.clients;
 
+import com.evizzo.carrier.auth.FeignClientConfig;
 import com.evizzo.carrier.dtos.PacketDTO;
 import com.evizzo.carrier.enums.PacketStatus;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.UUID;
 
-@FeignClient(name = "TRACKING-SERVICE")
+@FeignClient(name = "TRACKING-SERVICE", configuration = FeignClientConfig.class)
 public interface TrackingClient {
     @GetMapping("/tracking/packet/all")
     ResponseEntity<List<PacketDTO>> getAllPacketsOrderByCreatedAtDesc();
