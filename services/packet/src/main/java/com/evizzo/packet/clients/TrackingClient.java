@@ -1,6 +1,5 @@
 package com.evizzo.packet.clients;
 
-import com.evizzo.packet.auth.FeignClientConfig;
 import com.evizzo.packet.dtos.PacketDTO;
 import com.evizzo.packet.enums.PacketStatus;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@FeignClient(name = "TRACKING-SERVICE", configuration = FeignClientConfig.class)
+@FeignClient(name = "TRACKING-SERVICE")
 public interface TrackingClient {
     @PostMapping("/tracking/packet")
     ResponseEntity<PacketDTO> createPacket(@RequestBody PacketDTO packetDTO);

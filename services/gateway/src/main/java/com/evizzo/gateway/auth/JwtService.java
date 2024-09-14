@@ -1,4 +1,4 @@
-package com.evizzo.tracking.auth;
+package com.evizzo.gateway.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
