@@ -8,17 +8,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
-        <module name="carrier" />
-        <module name="post-office" />
         <module name="discovery" />
-        <module name="company" />
+        <module name="packet" />
         <module name="tracking" />
         <module name="gateway" />
         <module name="authentication" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="carrier" target="22" />
       <module name="notification" target="22" />
+      <module name="post-office" target="22" />
       <module name="user" target="22" />
     </bytecodeTargetLevel>
   </component>
@@ -26,11 +26,11 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="authentication" options="-parameters" />
       <module name="carrier" options="-parameters" />
-      <module name="company" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="notification" options="-parameters" />
+      <module name="packet" options="-parameters" />
       <module name="post-office" options="-parameters" />
       <module name="tracking" options="-parameters" />
       <module name="user" options="-parameters" />

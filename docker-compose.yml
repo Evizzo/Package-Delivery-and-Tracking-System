@@ -29,6 +29,23 @@ services:
       timeout: 5s
       retries: 5
 
+  gateway:
+    build: ./services/gateway
+    container_name: gateway
+    depends_on:
+      discovery:
+        condition: service_healthy
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka/
+    ports:
+      - "8222:8222"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://gateway:8222/actuator/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   mysql-container:
     image: mysql:8.0
     container_name: mysql-container
@@ -66,9 +83,9 @@ services:
     ports:
       - "8095:8095"
 
-  carrier:
-    build: ./services/carrier
-    container_name: carrier
+  packet:
+    build: ./services/packet
+    container_name: packet
     depends_on:
       discovery:
         condition: service_healthy
@@ -76,41 +93,13 @@ services:
         condition: service_healthy
     environment:
       - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka/
-    ports:
-      - "8094:8094"
-
-  company:
-    build: ./services/company
-    container_name: company
-    depends_on:
-      discovery:
-        condition: service_healthy
-      mysql-container:
-        condition: service_healthy
-    environment:
-      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka/
-    ports:
-      - "8090:8090"
-
-  post-office:
-    build: ./services/post-office
-    container_name: post-office
-    depends_on:
-      discovery:
-        condition: service_healthy
-      mysql-container:
-        condition: service_healthy
-    environment:
-      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3306/post
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3306/tracking
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=P@ssword123
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka/
     ports:
-      - "8091:8091"
+      - "8090:8090"
 
   tracking:
     build: ./services/tracking
