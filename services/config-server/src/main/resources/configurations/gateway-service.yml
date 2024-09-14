@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: authentication-service
+          uri: lb:http://AUTHENTICATION-SERVICE
+          predicates:
+            - Path=/auth/**
+        - id: carrier-service
+          uri: lb:http://CARRIER-SERVICE
+          predicates:
+            - Path=/carrier/**
+        - id: company-service
+          uri: lb:http://COMPANY-SERVICE
+          predicates:
+            - Path=/company/**
+        - id: post-office-service
+          uri: lb:http://POST-OFFICE-SERVICE
+          predicates:
+            - Path=/post-office/**
+        - id: tracking-service
+          uri: lb:http://TRACKING-SERVICE
+          predicates:
+            - Path=/tracking/**
+server:
+  port: 8222

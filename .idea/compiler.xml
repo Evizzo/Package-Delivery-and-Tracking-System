@@ -8,16 +8,19 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
-        <module name="notification" />
         <module name="carrier" />
         <module name="post-office" />
         <module name="discovery" />
         <module name="company" />
         <module name="tracking" />
-        <module name="user" />
+        <module name="gateway" />
         <module name="authentication" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="notification" target="22" />
+      <module name="user" target="22" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -26,6 +29,7 @@
       <module name="company" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="discovery" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="notification" options="-parameters" />
       <module name="post-office" options="-parameters" />
       <module name="tracking" options="-parameters" />
