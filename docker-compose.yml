@@ -93,7 +93,7 @@ services:
         condition: service_healthy
     environment:
       - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3306/tracking
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3306/company
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=P@ssword123
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
