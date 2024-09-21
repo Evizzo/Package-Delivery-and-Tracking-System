@@ -9,6 +9,7 @@ public class DTOService {
     public PacketDTO convertToDto(Packet packet) {
         return PacketDTO.builder()
                 .trackingNumber(packet.getTrackingNumber())
+                .sendToPersonUsername(packet.getSendToPersonUsername())
                 .destinationAddress(packet.getDestinationAddress())
                 .packetStatus(packet.getPacketStatus())
                 .createdAt(packet.getCreatedAt())
@@ -21,6 +22,7 @@ public class DTOService {
     public Packet convertToEntity(PacketDTO packetDTO) {
         return Packet.builder()
                 .trackingNumber(packetDTO.getTrackingNumber())
+                .sendToPersonUsername(packetDTO.getSendToPersonUsername())
                 .destinationAddress(packetDTO.getDestinationAddress())
                 .packetStatus(packetDTO.getPacketStatus())
                 .createdAt(packetDTO.getCreatedAt())

@@ -15,6 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class PacketDTO {
     private UUID trackingNumber;
+    private String sendToPersonUsername;
     private String destinationAddress;
     private PacketStatus packetStatus;
     private PacketSize packetSize;

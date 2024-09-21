@@ -25,6 +25,8 @@ public class Packet {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID trackingNumber;
 
+    private String sendToPersonUsername;
+
     private String destinationAddress;
 
     @Enumerated(EnumType.STRING)

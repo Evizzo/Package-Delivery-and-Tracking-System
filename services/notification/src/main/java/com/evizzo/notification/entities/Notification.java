@@ -24,7 +24,7 @@ public class Notification {
 
     private UUID packetId;
 
-    private UUID personId;
+    private String sendToPersonUsername;
 
     private Boolean isRead = false;
 
