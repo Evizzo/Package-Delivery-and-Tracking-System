@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
+        <module name="notification" />
         <module name="discovery" />
         <module name="packet" />
         <module name="tracking" />
@@ -17,7 +18,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="carrier" target="22" />
-      <module name="notification" target="22" />
       <module name="post-office" target="22" />
       <module name="user" target="22" />
     </bytecodeTargetLevel>

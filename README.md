@@ -78,3 +78,43 @@ An API Gateway that handles routing and JWT token validation to ensure secure co
 5. **Send Packet**
   - `PUT /send-packet`
   - Description: Updates packet details and marks it as sent.
+
+---
+
+## Notification Microservice
+
+### Base URL: `/notification`
+
+1. **Mark Notification Read Status**
+    - `PUT /{notificationId}/mark-read-status`
+    - Description: Marks a notification's read status as true or false.
+
+2. **Create Notification**
+    - `POST /`
+    - Description: Creates a new notification.
+
+3. **Get Notifications by Person ID**
+    - `GET /user/{personId}`
+    - Description: Retrieves all notifications for a specific user.
+
+---
+
+### Additional Repository Endpoints (via `@RepositoryRestResource`)
+
+These endpoints are automatically provided by Spring Data REST through the `NotificationRepository`:
+
+1. **Get All Notifications**
+    - `GET /notification`
+    - Description: Retrieves a list of all notifications.
+
+2. **Get Notification by ID**
+    - `GET /notification/{id}`
+    - Description: Retrieves a specific notification by its UUID.
+
+3. **Update Notification**
+    - `PUT /notification/{id}`
+    - Description: Updates an existing notification by its UUID.
+
+4. **Delete Notification**
+    - `DELETE /notification/{id}`
+    - Description: Deletes a specific notification by its UUID.

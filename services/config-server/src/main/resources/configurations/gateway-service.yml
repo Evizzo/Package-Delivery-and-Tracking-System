@@ -19,6 +19,11 @@ spring:
           uri: lb:http://TRACKING-SERVICE
           predicates:
             - Path=/tracking/**
+
+        - id: notification-service
+          uri: lb:http://NOTIFICATION-SERVICE
+          predicates:
+            - Path=/notification/**
 server:
   port: 8222
 jwt:

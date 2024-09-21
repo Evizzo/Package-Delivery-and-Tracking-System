@@ -119,5 +119,23 @@ services:
     expose:
       - "8092"
 
+  notification:
+    build: ./services/notification
+    container_name: notification
+    depends_on:
+      discovery:
+        condition: service_healthy
+      mysql-container:
+        condition: service_healthy
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://config-server:8888
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-container:3306/notifications
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=P@ssword123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery:8761/eureka/
+    expose:
+      - "8093"
+
 volumes:
   mysql_data:

@@ -20,7 +20,6 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/services/carrier/pom.xml" />
-        <option value="$PROJECT_DIR$/services/notification/pom.xml" />
         <option value="$PROJECT_DIR$/services/post-office/pom.xml" />
         <option value="$PROJECT_DIR$/services/user/pom.xml" />
       </set>
