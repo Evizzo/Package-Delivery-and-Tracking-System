@@ -1,9 +1,11 @@
 package com.evizzo.tracking.services;
 
+import com.evizzo.tracking.dtos.NotificationDTO;
 import com.evizzo.tracking.dtos.PacketDTO;
 import com.evizzo.tracking.entities.Packet;
 import com.evizzo.tracking.enums.PacketSize;
 import com.evizzo.tracking.enums.PacketStatus;
+import com.evizzo.tracking.kafka.NotificationProducer;
 import com.evizzo.tracking.repositories.PacketRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 public class PacketService {
     private final PacketRepository packetRepository;
     private final DTOService dtoService;
+    private final NotificationProducer notificationProducer;
 
     public PacketDTO savePacket(PacketDTO packetDTO) {
         Packet packet = dtoService.convertToEntity(packetDTO);
@@ -36,11 +39,19 @@ public class PacketService {
     }
 
     public void updatePacketStatus(UUID trackingNumber, PacketStatus status) {
-        var packet = packetRepository.findById(trackingNumber)
+        Packet packet = packetRepository.findById(trackingNumber)
                 .orElseThrow(() -> new IllegalArgumentException("Packet not found"));
 
         packet.setPacketStatus(status);
         packetRepository.save(packet);
+
+        NotificationDTO updateDTO = new NotificationDTO(
+                trackingNumber,
+                packet.getSendToPersonUsername(),
+                "Packet status updated to: " + status.name()
+        );
+
+        notificationProducer.sendPacketStatusUpdate(updateDTO);
     }
 
     public Optional<PacketDTO> findPacketById(UUID trackingNumber){

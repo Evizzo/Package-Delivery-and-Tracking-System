@@ -23,3 +23,11 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: tracking-group
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,10 +30,15 @@ public class NotificationService {
     }
 
     public Notification createNotification(Notification notification){
+        notification.setTimestamp(LocalDateTime.now());
+        notification.setMessage(notification.getMessage());
+        notification.setPacketId(notification.getPacketId());
+        notification.setSendToPersonUsername(notification.getSendToPersonUsername());
+
         return notificationRepository.saveAndFlush(notification);
     }
 
-    public List<Notification> getNotificationsByPersonId(UUID personId) {
-        return notificationRepository.findAllByPersonId(personId);
+    public List<Notification> getNotificationsByPersonId(String personUsername) {
+        return notificationRepository.findAllBySendToPersonUsername(personUsername);
     }
 }

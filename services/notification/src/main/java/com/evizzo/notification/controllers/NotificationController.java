@@ -46,12 +46,11 @@ public class NotificationController {
     /**
      * Retrieves all notifications for a specific person.
      *
-     * @param personId the ID of the person whose notifications are being retrieved
+     * @param personUsername the username of the person whose notifications are being retrieved
      * @return a {@link ResponseEntity} containing a list of notifications and HTTP status 200 (OK)
      */
-    @GetMapping("/user/{personId}")
-    public ResponseEntity<List<Notification>> getNotificationsByPersonId(@PathVariable UUID personId) {
-        List<Notification> notifications = notificationService.getNotificationsByPersonId(personId);
-        return ResponseEntity.ok(notifications);
+    @GetMapping("/user/{personUsername}")
+    public ResponseEntity<List<Notification>> getNotificationsByPersonUsername(@PathVariable String personUsername) {
+        return ResponseEntity.ok(notificationService.getNotificationsByPersonId(personUsername));
     }
 }
