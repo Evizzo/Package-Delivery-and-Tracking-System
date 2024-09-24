@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @RepositoryRestResource(path = "notification")
 public interface NotificationRepository extends JpaRepository<Notification, UUID> {
-    List<Notification> findAllBySendToPersonUsername(String sendToPersonUsername);
+    List<Notification> findAllBySendToPersonUsernameOrderByTimestampDesc(String sendToPersonUsername);
 }
 
 // GET /notification - Retrieve all notifications.

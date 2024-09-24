@@ -38,7 +38,7 @@ public class NotificationService {
         return notificationRepository.saveAndFlush(notification);
     }
 
-    public List<Notification> getNotificationsByPersonId(String personUsername) {
-        return notificationRepository.findAllBySendToPersonUsername(personUsername);
+    public List<Notification> getNotificationsByPersonUsername(String personUsername) {
+        return notificationRepository.findAllBySendToPersonUsernameOrderByTimestampDesc(personUsername);
     }
 }

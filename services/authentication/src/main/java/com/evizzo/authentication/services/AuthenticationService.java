@@ -20,7 +20,6 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
 
     public AuthenticationResponse register(RegisterRequest request) {
-
         if (personRepository.existsByUsername(request.getUsername())) {
             throw new RuntimeException("User with this username already exists");
         }
@@ -30,8 +29,11 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .build();
+
         personRepository.save(user);
+
         var jwtToken = jwtService.generateToken(user);
+
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
 
@@ -42,9 +44,12 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
+
         var user = personRepository.findByUsername(request.getUsername())
                 .orElseThrow();
+
         var jwtToken = jwtService.generateToken(user);
+
         return AuthenticationResponse.builder().token(jwtToken).role(user.getRole()).build();
     }
 }

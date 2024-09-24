@@ -45,13 +45,15 @@ public class PacketService {
         packet.setPacketStatus(status);
         packetRepository.save(packet);
 
-        NotificationDTO updateDTO = new NotificationDTO(
-                trackingNumber,
-                packet.getSendToPersonUsername(),
-                "Packet status updated to: " + status.name()
-        );
+        if (status != PacketStatus.PICKED_UP) {
+            NotificationDTO updateDTO = new NotificationDTO(
+                    trackingNumber,
+                    packet.getSendToPersonUsername(),
+                    "Packet status updated to: " + status.name()
+            );
 
-        notificationProducer.sendPacketStatusUpdate(updateDTO);
+            notificationProducer.sendPacketStatusUpdate(updateDTO);
+        }
     }
 
     public Optional<PacketDTO> findPacketById(UUID trackingNumber){
@@ -67,5 +69,13 @@ public class PacketService {
         existingPacket.setStoredAtWarehouse(sendPacket.getStoredAtWarehouse());
 
         packetRepository.save(existingPacket);
+
+        NotificationDTO updateDTO = new NotificationDTO(
+                sendPacket.getTrackingNumber(),
+                sendPacket.getSendToPersonUsername(),
+                "Packet is sent and is waiting in post office to be picked up!"
+        );
+
+        notificationProducer.sendPacketStatusUpdate(updateDTO);
     }
 }

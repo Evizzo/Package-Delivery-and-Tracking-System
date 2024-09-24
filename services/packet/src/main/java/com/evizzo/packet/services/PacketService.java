@@ -1,8 +1,10 @@
 package com.evizzo.packet.services;
 
 import com.evizzo.packet.clients.TrackingClient;
+import com.evizzo.packet.dtos.NotificationDTO;
 import com.evizzo.packet.dtos.PacketDTO;
 import com.evizzo.packet.enums.PacketStatus;
+import com.evizzo.packet.kafka.NotificationProducer;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 public class PacketService {
     private final TrackingClient trackingClient;
     private final StorageService storageService;
+    private final NotificationProducer notificationProducer;
 
     public PacketDTO createPacket(PacketDTO packetDTO) {
         return trackingClient.createPacket(packetDTO).getBody();
@@ -67,6 +70,14 @@ public class PacketService {
                 storageService.removePacket(packetDTO.getPacketSize());
 
                 trackingClient.updatePacketStatus(trackingNumber, PacketStatus.PICKED_UP);
+
+                NotificationDTO updateDTO = new NotificationDTO(
+                        packetDTO.getTrackingNumber(),
+                        packetDTO.getSendToPersonUsername(),
+                        "Packet is picked up by carrier!"
+                );
+
+                notificationProducer.sendPacketStatusUpdate(updateDTO);
             } else {
                 throw new IllegalStateException("Packet is not ready for pickup.");
             }
