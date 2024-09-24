@@ -99,7 +99,7 @@ The project also integrates Kafka for notifications.
 
 3. **Get Notifications by Person ID**
     - `GET /user/{personId}`
-    - Description: Retrieves all notifications for a specific user.
+    - Description: Retrieves all notifications for a specific user, sorted from newest to oldest.
 
 ---
 
