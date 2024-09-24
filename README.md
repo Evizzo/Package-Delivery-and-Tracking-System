@@ -1,16 +1,18 @@
 ## Description:
 
-This project was created to explore and experiment with microservices architecture and essential concepts such as service discovery, configuration management, and API security. It consists of four microservices: Authentication, Packet Management, Notifications and Tracking.
+This project was created to explore and experiment with microservices architecture and essential concepts such as service discovery, configuration management, and API security. 
+It consists of four microservices: Authentication, Packet Management, Notifications, and Tracking.
 
-The Authentication Microservice handles user registration, authentication, and logout, with JWT token issuance.
-The Packet Microservice manages the creation, sending, and pickup of packets.
-The Tracking Microservice allows tracking of packet statuses and updates their state.
-The Notification Microservice facilitates the creation and management of notifications, ensuring users are informed of relevant events.
+---
 
 The project also integrates:
+
 A Config Server for centralized configuration management.
+
 A Eureka Server for service discovery, allowing dynamic scaling and fault tolerance.
+
 An API Gateway that handles routing and JWT token validation to ensure secure communication between services.
+
 The project also integrates Kafka for notifications.
 
 ## Authentication Microservice
