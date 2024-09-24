@@ -97,8 +97,8 @@ The project also integrates Kafka for notifications.
     - `POST /`
     - Description: Creates a new notification.
 
-3. **Get Notifications by Person ID**
-    - `GET /user/{personId}`
+3. **Get Notifications by Person username**
+    - `GET /user/{personUsername}`
     - Description: Retrieves all notifications for a specific user, sorted from newest to oldest.
 
 ---
