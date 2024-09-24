@@ -5,6 +5,7 @@ This project was created to explore and experiment with microservices architectu
 The Authentication Microservice handles user registration, authentication, and logout, with JWT token issuance.
 The Packet Microservice manages the creation, sending, and pickup of packets.
 The Tracking Microservice allows tracking of packet statuses and updates their state.
+The Notification Microservice facilitates the creation and management of notifications, ensuring users are informed of relevant events.
 
 The project also integrates:
 A Config Server for centralized configuration management.
